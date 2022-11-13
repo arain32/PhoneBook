@@ -13,50 +13,58 @@ public class PhoneBook {
     private final Map<String, List<String>> phonebook;
 
     public PhoneBook(Map<String, List<String>> map) {
+
         this.phonebook = map;
     }
+
     public PhoneBook() {
-        this.phonebook = new LinkedHashMap<>();
+
+        this(new LinkedHashMap<>());
     }
+
     public void add(String name, String phoneNumber) {
         ArrayList<String> a = new ArrayList<>();
         a.add(phoneNumber);
-        this.phonebook.put(name,a);
+        this.phonebook.put(name, a);
     }
+
     public void addAll(String name, String... phoneNumbers) {
-    ArrayList<String> a = new ArrayList<>();
-    a.addAll(Arrays.asList(phoneNumbers));
-    this.phonebook.put(name,a);
+        ArrayList<String> a = new ArrayList<>();
+        a.addAll(Arrays.asList(phoneNumbers));
+        this.phonebook.put(name, a);
     }
 
     public void remove(String name) {
-    this.phonebook.remove(name);
+        this.phonebook.remove(name);
     }
+
     public Boolean hasEntry(String name) {
-    return this.phonebook.containsKey(name);
+        return this.phonebook.containsKey(name);
     }
-    public Boolean hasEntry(String name,String number){
+
+    public Boolean hasEntry(String name, String number) {
         return this.phonebook.containsKey(name) &&
                 this.phonebook.get(name).contains(number);
     }
-    public List<String> lookup(String name) {
 
+    public List<String> lookup(String name) {
         return this.phonebook.get(name);
     }
 
     public String reverseLookup(String phoneNumber) {
-        for (String name : this.phonebook.Keyset()) {
+        for (String name : this.phonebook.keySet()) {
             if (phonebook.get(name).contains(phoneNumber)) {
                 return name;
             }
+        }
+        return "";
+    }
+        public List<String> getAllContactNames () {
 
-            public List<String> getAllContactNames() {
-
-                return new ArrayList<>(this.phonebook.keySet());
-            }
-
+            return new ArrayList<>(this.phonebook.keySet());
+        }
             public Map<String, List<String>> getMap() {
                 return this.phonebook;
             }
-
         }
+
